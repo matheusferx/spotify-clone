@@ -1,31 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Player from '../components/Player'
 import { Link, useParams } from 'react-router-dom'
-import { songsArray } from '../assets/database/songs'
-import { artistArray } from '../assets/database/artists'
+import { songsArray } from '../assets/database/songs.js'
+import { artistArray } from '../assets/database/artists.js'
 
 const Song = () => {
   const { id } = useParams();
+  const [songs, setSongs] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const songObj = songsArray.find(
+  useEffect(() => {
+    Promise.all([songsArray(), artistArray()]).then(([songsData, artistsData]) => {
+      setSongs(songsData);
+      setArtists(artistsData);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return <div>Carregando...</div>;
+
+  const songObj = songs.find(
     (currentSongObj) => currentSongObj._id === id
   );
 
+  if (!songObj) return <div>Música não encontrada</div>;
+
   const { image, name, duration, artist, audio, index } = songObj;
 
-  const artistObj = artistArray.find(
+  const artistObj = artists.find(
     (currentArtistObj) => currentArtistObj.name === artist
   );
 
-  const songsArrayFromArtist = songsArray.filter(
+  const songsArrayFromArtist = songs.filter(
       (currentSongObj) => currentSongObj.artist === artist
   );
-  
+
   const randomIndex = Math.floor(Math.random() * (songsArrayFromArtist.length - 1)); 
-  const randomIdFromArtist = songsArrayFromArtist[randomIndex]._id;
-  
+  const randomIdFromArtist = songsArrayFromArtist[randomIndex]?._id;
+
   const randomIndex2 = Math.floor(Math.random() * (songsArrayFromArtist.length - 1)); 
-  const randomId2FromArtist = songsArrayFromArtist[randomIndex2]._id;
+  const randomId2FromArtist = songsArrayFromArtist[randomIndex2]?._id;
 
   return (
     <div className='song'>
@@ -37,9 +52,11 @@ const Song = () => {
         </div>
 
         <div className="song__bar">
-          <Link to={`/artist/${artistObj._id}`} className="song__artist-image">
-            <img width={60} height={60} src={artistObj.image} alt={`Imagem do Artista ${artist}`} />
-          </Link>
+          {artistObj && (
+            <Link to={`/artist/${artistObj._id}`} className="song__artist-image">
+              <img width={60} height={60} src={artistObj.image} alt={`Imagem do Artista ${artist}`} />
+            </Link>
+          )}
 
           <Player duration={duration} randomIdFromArtist={randomIdFromArtist} randomId2FromArtist={randomId2FromArtist} audio={audio} />
 
