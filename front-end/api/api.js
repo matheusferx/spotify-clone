@@ -1,12 +1,15 @@
 import axios from "axios";
-import dotenv from "dotenv";
 
-dotenv.config();
+const URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
-const URL = process.env.BACK_URL || "http://localhost:3000";
+export async function getData() {
+  const [responseArtist, responseSongs] = await Promise.all([
+    axios.get(`${URL}/artists`),
+    axios.get(`${URL}/songs`)
+  ]);
 
-const responseArtist = await axios.get(`${URL}/artists`);
-const responseSongs = await axios.get(`${URL}/songs`);
-
-export const artistArray = responseArtist.data;
-export const songsArray = responseSongs.data;
+  return {
+    artistArray: responseArtist.data,
+    songsArray: responseSongs.data
+  };
+}
