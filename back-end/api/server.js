@@ -5,7 +5,7 @@ import cors from "cors";
 const app = express();
 const PORT = 3001;
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'https://spotify-clone-inky-alpha.vercel.app' }));
 
 app.get('/', (request, response) => {
     response.send("Só vamos trabalhar com os endpoints '/artists' e '/songs'");
