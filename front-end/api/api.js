@@ -1,6 +1,9 @@
 import axios from "axios";
+import dotenv from "dotenv";
 
-const URL = "http://localhost:3001";
+dotenv.config();
+
+const URL = process.env.BACK_URL || "http://localhost:3000";
 
 const responseArtist = await axios.get(`${URL}/artists`);
 const responseSongs = await axios.get(`${URL}/songs`);

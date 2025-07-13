@@ -1,4 +1,3 @@
-import React from 'react'
 import Logo from '../assets/icons/logo-spotify.png'
 import { Link } from 'react-router-dom'
 
@@ -47,7 +46,7 @@ const Sidebar = () => {
             </section>
 
             <div className="cookies">
-            <a href="https://www.google.com/search?sca_esv=ccddce7db33695af&q=cookies&udm=2&fbs=ABzOT_BYhiZpMrUAF0c9tORwPGlsjfkTCQbVbkeDjnTQtijddBq82CQX-xUBR9s0VVH0Uz4YZWXmkEwVISjw0MO8OaXMH1pERxdbKRpzgSVqu8KOuIGlQz5RGX0LOCG8ffAQPdryRDfzbTLD1WxFPGdw4VvfhRlD75pc1t6EewqFz-p3i-3FBXAV1tHHKgjybQEdAU_i78iNiHdqPWN6GILCYC7rGmrTrA&sa=X&ved=2ahUKEwi4sv3utMuLAxVdppUCHRMJKIgQtKgLegQIEBAB&biw=1242&bih=583&dpr=1.1" target="_blank" rel="noopener noreferrer">Cookies</a>
+            <p className='cookies__text'>Cookies</p>
             </div>
 
             <div className="languages">
