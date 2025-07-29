@@ -6,8 +6,8 @@ Este projeto é um clone simplificado do Spotify, criado com React (Vite) no fro
 
 ## 🔗 Demonstração
 
-- **Frontend (Vercel):** [spotify-clone-frontend.vercel.app](https://spotify-clone-frontend.vercel.app)
-- **Backend (Render):** [spotify-clone-1g2p.onrender.com](https://spotify-clone-1g2p.onrender.com)
+- **Frontend (Vercel):** [https://spotify-clone-inky-alpha.vercel.app/](https://spotify-clone-inky-alpha.vercel.app/)
+- **Backend (Render):** [https://spotify-clone-1g2p.onrender.com](https://spotify-clone-1g2p.onrender.com)
 
 > ℹ️ O backend está hospedado no Render, que pode levar alguns segundos para iniciar na primeira requisição.
 
